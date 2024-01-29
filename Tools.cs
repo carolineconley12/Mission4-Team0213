@@ -1,5 +1,6 @@
 ﻿class Board
 {
+    // create the inital blank board
     public void PrintBoard(char[] board)
     {
         Console.WriteLine($" {board[0]} | {board[1]} | {board[2]} ");
