@@ -1,7 +1,13 @@
-﻿internal class Program
+﻿using System;
+using Mission4_Team0213;
+class Game
 {
-    private static void Main(string[] args)
+    static void Main()
     {
-        Console.WriteLine("Hello, World!");
+        Console.WriteLine("Welcome to Tic-Tac-Toe!");
+
+        // Initialize the game board
+        char[] board = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+
     }
 }
