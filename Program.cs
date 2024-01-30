@@ -1,7 +1,5 @@
 ﻿using System;
 
-Tools t = new Tools();
-
 class Game
 {
     static void Main()
@@ -18,7 +16,7 @@ class Game
 
         while (play)
         {
-            game.DisplayBoard(board); //change later to Tools.PrintBoard(board)
+            game.DisplayBoard(board); //change later to t.PrintBoard(board)
 
             Console.WriteLine($"Player {(turn % 2 != 0 ? 1 : 2)}, enter your position choice (1-9):");
             string input = Console.ReadLine();
@@ -30,10 +28,13 @@ class Game
 
             char symbol = turn % 2 != 0 ? 'X' : 'O';
             board[guessNumber - 1] = symbol;
-            choices[guessNumber - 1] = symbol;
+            choices[guessNumber - 1] = char.Parse(input);
 
             // Add win condition check here
             // Set play to false if someone wins or if it's a tie
+
+            // t.isWinner(board)
+            // Console.WriteLine($"Player [they might pass in a variable] has won!");
 
             turn++;
         }
@@ -55,12 +56,12 @@ class Game
     {
         if (!Char.IsDigit(guess))
         {
-            Console.WriteLine("Input must be a number. Try again.");
+            Console.WriteLine("Input must be a number. Please try again.");
             return false;
         }
         else if (guess < '1' || guess > '9')
         {
-            Console.WriteLine("The guess must be between 1-9. Try again.");
+            Console.WriteLine("The guess must be between 1-9. Please try again.");
             return false;
         }
         else if (choices.Contains(guess))
