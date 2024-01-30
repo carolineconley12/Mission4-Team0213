@@ -1,6 +1,5 @@
-﻿using System;
-using System.Security.Cryptography.X509Certificates;
-using Mission4_Team0213;
+﻿using System.Runtime.InteropServices;
+
 class Game
 {
     static void Main()
@@ -10,7 +9,8 @@ class Game
         // Initialize the game board
         char[] board = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
-        char[] choices = { };
+        char[] choices = new char[9];
+        Console.WriteLine(choices);
 
         int turn = 1;
 
