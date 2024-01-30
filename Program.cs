@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Security.Cryptography.X509Certificates;
-using Mission4_Team0213;
-using Tools.cs;
+using Mission4-Team0213;
 class Game
 {
     static void Main()
