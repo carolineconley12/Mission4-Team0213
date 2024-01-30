@@ -8,11 +8,13 @@ class Game
         Console.WriteLine("Welcome to Tic-Tac-Toe!");
 
         // Initialize the game board
-        int[] board = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        char[] board = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
         char[] choices = { };
 
         int turn = 1;
+
+        string strboard = new string(board);
 
         bool play = true;
 
@@ -31,6 +33,11 @@ class Game
 
                     game.ValidGuess(guess, choices);
 
+                    char symbol = 'X';
+
+                    strboard = strboard.Replace(guess, symbol);
+
+                    board = strboard.ToCharArray();
                     turn++;
 
 
@@ -43,6 +50,12 @@ class Game
                     choices[i] = guess;
 
                     game.ValidGuess(guess, choices);
+
+                    char symbol = 'O';
+
+                    strboard = strboard.Replace(guess, symbol);
+
+                    board = strboard.ToCharArray();
 
                     turn++;
                 }
