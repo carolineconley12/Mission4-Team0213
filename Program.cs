@@ -17,7 +17,7 @@ class Game
 
         bool play = true;
 
-
+        Game game = new Game();
 
         do
         {
@@ -29,7 +29,7 @@ class Game
                     Console.WriteLine("Player 1, enter your position choice (1-9):");
                     char guess = char.Parse(Console.ReadLine());
 
-                    ValidGuess(guess, choices);
+                    game.ValidGuess(guess, choices);
 
                     choices[i] = char.Parse(Console.ReadLine());
 
