@@ -28,11 +28,9 @@ class Game
                 {
                     Console.WriteLine("Player 1, enter your position choice (1-9):");
                     char guess = char.Parse(Console.ReadLine());
+                    choices[i] = guess;
 
                     game.ValidGuess(guess, choices);
-
-                    choices[i] = char.Parse(Console.ReadLine());
-
 
                     turn++;
 
@@ -42,9 +40,11 @@ class Game
                 else
                 {
                     Console.WriteLine("Player 2, enter your position choice (1-9):");
-                    string guess = Console.ReadLine();
+                    char guess = char.Parse(Console.ReadLine());
+                    choices[i] = guess;
 
-                    choices[i] = char.Parse(Console.ReadLine());
+                    game.ValidGuess(guess, choices);
+
                     turn++;
                 }
             }
