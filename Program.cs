@@ -1,4 +1,6 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+
+Tools t = new Tools();
 
 class Game
 {
@@ -6,84 +8,66 @@ class Game
     {
         Console.WriteLine("Welcome to Tic-Tac-Toe!");
 
-        // Initialize the game board
-        char[] board = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
-
-        char[] choices = new char[9];
-        Console.WriteLine(choices);
+        char[] board = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        char[] choices = new char[board.Length];
 
         int turn = 1;
-
-        string strboard = new string(board);
-
         bool play = true;
 
         Game game = new Game();
 
-        do
+        while (play)
         {
-            for (int i = 0; i < board.Length; i++)
+            game.DisplayBoard(board); //change later to Tools.PrintBoard(board)
+
+            Console.WriteLine($"Player {(turn % 2 != 0 ? 1 : 2)}, enter your position choice (1-9):");
+            string input = Console.ReadLine();
+
+            if (!int.TryParse(input, out int guessNumber) || !game.ValidGuess((char)(guessNumber + '0'), choices))
             {
-
-                if (turn % 2 != 0)
-                {
-                    Console.WriteLine("Player 1, enter your position choice (1-9):");
-                    char guess = char.Parse(Console.ReadLine());
-                    choices[i] = guess;
-
-                    game.ValidGuess(guess, choices);
-
-                    char symbol = 'X';
-
-                    strboard = strboard.Replace(guess, symbol);
-
-                    board = strboard.ToCharArray();
-                    turn++;
-
-
-                }
-
-                else
-                {
-                    Console.WriteLine("Player 2, enter your position choice (1-9):");
-                    char guess = char.Parse(Console.ReadLine());
-                    choices[i] = guess;
-
-                    game.ValidGuess(guess, choices);
-
-                    char symbol = 'O';
-
-                    strboard = strboard.Replace(guess, symbol);
-
-                    board = strboard.ToCharArray();
-
-                    turn++;
-                }
+                continue;
             }
 
-        } while (play == true);
+            char symbol = turn % 2 != 0 ? 'X' : 'O';
+            board[guessNumber - 1] = symbol;
+            choices[guessNumber - 1] = symbol;
+
+            // Add win condition check here
+            // Set play to false if someone wins or if it's a tie
+
+            turn++;
+        }
+    }
+
+    public void DisplayBoard(char[] board)
+    {
+        for (int i = 0; i < board.Length; i += 3)
+        {
+            Console.WriteLine($"{board[i]} | {board[i + 1]} | {board[i + 2]}");
+            if (i < 6)
+            {
+                Console.WriteLine("--+---+--");
+            }
+        }
     }
 
     public bool ValidGuess(char guess, char[] choices)
     {
-        bool result = true;
-        int guessNumber = int.Parse(guess.ToString());
-
-        if (!Char.IsNumber(guess))
+        if (!Char.IsDigit(guess))
         {
-            Console.WriteLine("Input must be a number. Try again");
-            result = false;
+            Console.WriteLine("Input must be a number. Try again.");
+            return false;
         }
-        else if ((guessNumber) is < 1 or > 9)
+        else if (guess < '1' || guess > '9')
         {
-            Console.WriteLine("The guess must be between 1-9. Try again");
-            result = false;
+            Console.WriteLine("The guess must be between 1-9. Try again.");
+            return false;
         }
         else if (choices.Contains(guess))
         {
-            Console.WriteLine("This position already has a guess. Please choose a new one: ");
+            Console.WriteLine("This position already has a guess. Please choose a new one:");
+            return false;
         }
-
-        return result;
+        return true;
     }
 }
