@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace Mission4_Team0213
 {
+
+    
     internal class Board
     {
         // create the inital blank board
+
+        char[] board = { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
         public void PrintBoard(char[] board)
         {
             Console.WriteLine($" {board[0]} | {board[1]} | {board[2]} ");
@@ -17,7 +21,7 @@ namespace Mission4_Team0213
             Console.WriteLine("---|---|---");
             Console.WriteLine($" {board[6]} | {board[7]} | {board[8]} ");
         }
-
+        
         // makes sure that the move is valid and goes into the correct box
         public bool IsValidMove(char[] board, int choice)
         {
@@ -29,9 +33,9 @@ namespace Mission4_Team0213
         // this method checks to make sure that the guess is valid
         public bool ValidGuess(char guess, char[] choices)
         {
-            if (!IsValidMove(choices, guess))
+            if (!Char.IsDigit(guess))
             {
-                Console.WriteLine("The guess must be a number between 1-9. Please try again.");
+                Console.WriteLine("The guess must be between 1-9. Please try again.");
                 return false;
             }
             else if (guess < '1' || guess > '9')
