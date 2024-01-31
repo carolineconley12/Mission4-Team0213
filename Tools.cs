@@ -25,7 +25,28 @@ namespace Mission4_Team0213
                    board[choice - 1] == '4' || board[choice - 1] == '5' || board[choice - 1] == '6' ||
                    board[choice - 1] == '7' || board[choice - 1] == '8' || board[choice - 1] == '9';
         }
-        
+
+        // this method checks to make sure that the guess is valid
+        public bool ValidGuess(char guess, char[] choices)
+        {
+            if (!Char.IsDigit(guess))
+            {
+                Console.WriteLine("The guess must be a number between 1-9. Please try again.");
+                return false;
+            }
+            else if (guess < '1' || guess > '9')
+            {
+                Console.WriteLine("The guess must be between 1-9. Please try again.");
+                return false;
+            }
+            else if (choices.Contains(guess))
+            {
+                Console.WriteLine("This position already has a guess. Please choose a new one:");
+                return false;
+            }
+            return true;
+        }
+
         // this method determies the winner of the game
         public bool IsWinner(char[] board)
         {
