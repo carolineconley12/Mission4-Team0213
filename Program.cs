@@ -22,10 +22,17 @@ class Game
             Console.WriteLine($"Player {(turn % 2 != 0 ? 1 : 2)}, enter your position choice (1-9):");
             string input = Console.ReadLine();
 
-            if (!int.TryParse(input, out int guessNumber) || !b.ValidGuess((char)(guessNumber + '0'), choices))
+            //if (!int.TryParse(input, out int guessNumber) || !b.ValidGuess((char)(guessNumber + '0'), choices))
+            //{
+            //continue;
+            //}
+
+            if (!int.TryParse(input, out int guessNumber) || !b.IsValidMove((board, int.Parse(input))))
             {
                 continue;
             }
+
+
 
             char symbol = turn % 2 != 0 ? 'X' : 'O';
             board[guessNumber - 1] = symbol;
@@ -48,7 +55,6 @@ class Game
                 Console.WriteLine("You tied!");
                 play = false;
             }
-            
 
             turn++;
         }

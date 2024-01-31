@@ -29,7 +29,7 @@ namespace Mission4_Team0213
         // this method checks to make sure that the guess is valid
         public bool ValidGuess(char guess, char[] choices)
         {
-            if (!Char.IsDigit(guess))
+            if (!IsValidMove(choices, guess))
             {
                 Console.WriteLine("The guess must be a number between 1-9. Please try again.");
                 return false;
