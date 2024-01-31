@@ -15,10 +15,14 @@ class Game
 
         Board b = new Board();
 
+        //play the game
         while (play)
         {
+            //show the tic-tac-toe board
             b.PrintBoard(board);
 
+
+            //get user input
             Console.WriteLine($"Player {(turn % 2 != 0 ? 1 : 2)}, enter your position choice (1-9):");
             string input = Console.ReadLine();
 
@@ -33,24 +37,20 @@ class Game
                 continue; // Skip the rest of the loop and ask for input again.
             }
 
-
-            //  if (!int.TryParse(input, out int guessNumber) || !b.IsValidMove((board, int.Parse(input))))
-            // {
-            //     continue;
-            // }
-
-
-
+            //place the X or the O symbol in the board
             char symbol = turn % 2 != 0 ? 'X' : 'O';
             board[guessNumber - 1] = symbol;
             choices[guessNumber - 1] = char.Parse(input);
 
+
+            //outputs the winner of the game
             if (b.IsWinner(board))
             {
                 Console.WriteLine($"Player {(turn % 2 != 0 ? 1 : 2)} has won!");
                 play = false;
             }
 
+            //outputs that there is a tie
             if (b.IsBoardFull(board) && (!b.IsWinner(board)))
             {
                 Console.WriteLine("You tied!");
